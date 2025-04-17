@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html x-data="co2Table()" :lang="lang" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CO₂‑Footprint Transparenz</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body class="antialiased text-gray-800 bg-white">
+<div class="flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-green-700 text-white">
+        <div class="container mx-auto flex items-center justify-between py-3 px-4">
+            <div class="flex items-center gap-2">
+                <img src="logo.png" alt="Logo" class="h-8 w-8" />
+                <span class="font-semibold text-lg tracking-wide">CO₂‑Footprint</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <nav class="space-x-4 hidden md:block">
+                    <a href="index.html#daten"   class="hover:underline" x-text="l('Daten','Data')"></a>
+                    <a href="ueber.html"         class="hover:underline" x-text="l('Über uns','About us')"></a>
+                    <a href="kontakt.html"       class="hover:underline" x-text="l('Kontakt','Contact')"></a>
+                </nav>
+                <div class="flex items-center gap-1 text-sm">
+                    <button @click="setLang('de')" :class="lang==='de'?'font-bold underline':''">DE</button>
+                    <span>|</span>
+                    <button @click="setLang('en')" :class="lang==='en'?'font-bold underline':''">EN</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="flex flex-1 flex-col md:flex-row">
+        <!-- Sidebar -->
+        <aside class="sidebar md:w-1/4 bg-gray-100 p-4">
+            <h2 class="text-lg font-semibold mb-2" x-text="l('Menü','Menu')"></h2>
+            <ul class="space-y-2">
+                <li><a href="index.html#daten"    class="text-green-700 hover:underline" x-text="l('CO₂‑Daten','CO₂ Data')"></a></li>
+                <li><a href="ueber.html"          class="text-green-700 hover:underline" x-text="l('Über uns','About us')"></a></li>
+                <li><a href="kontakt.html"        class="text-green-700 hover:underline" x-text="l('Kontakt','Contact')"></a></li>
+                <li><a href="impressum.html"      class="text-green-700 hover:underline" x-text="l('Impressum','Imprint')"></a></li>
+                <li><a href="datenschutz.html"    class="text-green-700 hover:underline" x-text="l('Datenschutz','Privacy')"></a></li>
+            </ul>
+        </aside>
+
+        <!-- Main -->
+        <section class="content flex-1 p-6">
+            <h1 id="daten" class="text-2xl font-bold mb-6"
+                x-text="l('CO₂‑Emissionen nach Land & Unternehmen','CO₂ emissions by country & company')"></h1>
+
+            <!-- Filter -->
+            <div class="flex flex-wrap gap-6 mb-6">
+                <div>
+                    <label for="country" class="block text-sm font-medium"
+                           x-text="l('Land filtern','Filter country')"></label>
+                    <input id="country" type="text"
+                           x-model="countryFilter" @input="sanitize('countryFilter')"
+                           class="mt-1 border rounded px-2 py-1 w-40"/>
+                </div>
+                <div>
+                    <label for="company" class="block text-sm font-medium"
+                           x-text="l('Unternehmen filtern','Filter company')"></label>
+                    <input id="company" type="text"
+                           x-model="companyFilter" @input="sanitize('companyFilter')"
+                           class="mt-1 border rounded px-2 py-1 w-40"/>
+                </div>
+            </div>
+
+            <!-- Tabelle -->
+            <div class="overflow-x-auto rounded shadow">
+                <table class="min-w-full text-left text-sm">
+                    <thead class="bg-gray-200 select-none">
+                    <tr>
+                        <th class="px-4 py-2 cursor-pointer" @click="sort('country')">
+                            <span x-text="l('Land','Country')"></span>
+                            <span x-text="sortKey==='country'? (sortAsc?' ▲':' ▼'): ''"></span>
+                        </th>
+                        <th class="px-4 py-2 cursor-pointer" @click="sort('company')">
+                            <span x-text="l('Unternehmen','Company')"></span>
+                            <span x-text="sortKey==='company'? (sortAsc?' ▲':' ▼'): ''"></span>
+                        </th>
+                        <th class="px-4 py-2 cursor-pointer" @click="sort('emissions')">
+                            <span x-text="l('Emissionen (Mt)','Emissions (Mt)')"></span>
+                            <span x-text="sortKey==='emissions'? (sortAsc?' ▲':' ▼'): ''"></span>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <template x-for="row in filteredRows" :key="row.id">
+                        <tr class="even:bg-gray-50 hover:bg-gray-100">
+                            <td class="px-4 py-2" x-text="row.country[lang]"></td>
+                            <td class="px-4 py-2" x-text="row.company"></td>
+                            <td class="px-4 py-2"
+                                x-text="row.emissions.toLocaleString(lang==='de'?'de-DE':'en-US')"></td>
+                        </tr>
+                    </template>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-200 text-xs text-center p-4">
+        <p x-text="l('© 2025 Klima‑Transparenz‑Initiative – Alle Rechte vorbehalten.',
+                   '© 2025 Climate Transparency Initiative – All rights reserved.')"></p>
+        <p class="mt-1">
+            <a href="impressum.html" class="underline"
+               x-text="l('Impressum & Datenschutz','Imprint & Privacy')"></a>
+        </p>
+    </footer>
+
+</div>
+<script src="app.js"></script>
+</body>
+</html>
