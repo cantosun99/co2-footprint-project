@@ -1,20 +1,20 @@
 /**
- * Alpine‑Komponente für Filtern + Sortieren + Sprache + zweisprachige Länder
+ * Alpine‑Komponente für Filter, Sortierung, Sprachwahl und mehrsprachige Länder
  */
 function co2Table() {
     return {
-        /* Sprache ('de' | 'en') */
+        /* Sprache (de/en) */
         lang: 'de',
 
-        /* Filter‑State */
+        /* Filterzustand */
         countryFilter: '',
         companyFilter: '',
 
-        /* Sortier‑State */
+        /* Sortierzustand */
         sortKey: 'emissions',
         sortAsc: false,
 
-        /* Datensätze mit Länder‑Objekt {de, en} */
+        /* Datensätze mit zweisprachigen Ländern */
         rows: [
             { id:  1, country: { de:'Deutschland', en:'Germany' },  company:'Energiewerke AG',     emissions:120 },
             { id:  2, country: { de:'Deutschland', en:'Germany' },  company:'Ruhr Kohle GmbH',     emissions:210 },
@@ -57,12 +57,12 @@ function co2Table() {
             { id: 30, country: { de:'Japan',       en:'Japan' },    company:'Sakura Power',        emissions: 95 },
         ],
 
-        /* Sprachwechsler */
+        /* Sprachauswahl */
         setLang(l) { this.lang = l; },
-        /* Helper für UI‑Texte */
+        /* UI-Text-Helfer */
         l(de, en) { return this.lang === 'de' ? de : en; },
 
-        /* Sanitization */
+        /* Eingabereinigung */
         sanitize(field) {
             this[field] = this[field].replace(/[<>\/\\{}\[\];:'"`]/g, '');
         },
@@ -77,7 +77,7 @@ function co2Table() {
             }
         },
 
-        /* Gefilterte + sortierte Zeilen */
+        /* Gefilterte und sortierte Zeilen */
         get filteredRows() {
             const cf = this.countryFilter.toLowerCase();
             const pf = this.companyFilter.toLowerCase();
@@ -102,5 +102,3 @@ function co2Table() {
         }
     };
 }
-
-// Alpine initialisiert sich durch das defer‑Script im head automatisch

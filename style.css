@@ -1,7 +1,7 @@
-/* zusätzliche Styles außerhalb von Tailwind */
-
-/* Menü in RTL‑Sprachen rechts positionieren */
+/* Sidebar bei RTL rechts anordnen */
 [dir="rtl"] .sidebar { order: 2; }
-[dir="rtl"] .content  { order: 1; }
+/* Inhalt bei RTL links anordnen */
+[dir="rtl"] .content { order: 1; }
 
+/* Weiche Animation beim Seitenleistenwechsel */
 .sidebar { transition: order .3s ease; }

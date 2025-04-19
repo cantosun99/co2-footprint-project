@@ -1,77 +1,83 @@
 <!DOCTYPE html>
-<html lang="de" dir="ltr" x-data="co2Table()">
+<html x-data="co2Table()" :lang="lang" dir="ltr">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kontakt | CO₂‑Footprint</title>
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" />
+    <title x-text="l('Kontakt | CO₂‑Footprint','Contact | CO₂ Footprint')">Kontakt | CO₂‑Footprint</title>
 
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body class="antialiased text-gray-800 bg-white">
 <div class="flex flex-col min-h-screen">
 
-    <!-- Header -->
+    <!-- Kopfzeile -->
     <header class="bg-green-700 text-white">
-        <div class="container mx-auto flex items-center justify-between py-3 px-4">
-            <div class="flex items-center gap-2">
-                <img src="logo.png" alt="Logo" class="h-8 w-8" />
-                <span class="font-semibold text-lg tracking-wide">CO₂‑Footprint</span>
+        <div class="container mx-auto flex items-center justify-between py-4 px-4">
+            <div class="flex items-center gap-3">
+                <img src="logo.png" alt="Logo" class="h-12 w-12" />
+                <span class="font-semibold text-2xl md:text-3xl tracking-wide">CO₂‑Footprint</span>
             </div>
-            <div class="flex items-center gap-4">
-                <nav class="space-x-4 hidden md:block">
-                    <a href="index.html#daten" class="hover:underline" x-text="l('Daten','Data')"></a>
-                    <a href="ueber.html"       class="hover:underline" x-text="l('Über uns','About us')"></a>
-                    <a href="kontakt.html"     class="hover:underline font-semibold underline"
-                       x-text="l('Kontakt','Contact')"></a>
+            <!-- Navigation & Sprache -->
+            <div class="flex items-center gap-6 text-sm">
+                <nav class="flex items-center gap-4">
+                    <a href="index.html" class="hover:underline" x-text="l('CO₂‑Daten','CO₂ Data')"></a>
+                    <a href="ueber.html" class="hover:underline" x-text="l('Über uns','About us')"></a>
+                    <a href="kontakt.html" class="hover:underline font-bold underline" x-text="l('Kontakt','Contact')"></a>
                 </nav>
-                <div class="flex items-center gap-1 text-sm">
-                    <button @click="setLang('de')" :class="lang==='de' ? 'font-bold underline' : ''">DE</button>
+                <div class="flex items-center gap-2">
+                    <button @click="setLang('de')" :class="lang==='de'?'font-bold underline':''">DE</button>
                     <span>|</span>
-                    <button @click="setLang('en')" :class="lang==='en' ? 'font-bold underline' : ''">EN</button>
+                    <button @click="setLang('en')" :class="lang==='en'?'font-bold underline':''">EN</button>
                 </div>
             </div>
         </div>
     </header>
 
+    <!-- Hauptinhalt -->
     <main class="flex flex-1 flex-col md:flex-row">
+        <!-- Seitenleiste -->
         <aside class="sidebar md:w-1/4 bg-gray-100 p-4">
-            <h2 class="text-lg font-semibold mb-2" x-text="l('Menü','Menu')"></h2>
+            <!-- Lokale Links -->
             <ul class="space-y-2">
-                <li><a href="index.html#daten" class="text-green-700 hover:underline" x-text="l('CO₂‑Daten','CO₂ Data')"></a></li>
-                <li><a href="ueber.html"      class="text-green-700 hover:underline" x-text="l('Über uns','About us')"></a></li>
-                <li><a href="kontakt.html"    class="text-green-700 hover:underline font-semibold underline"
-                       x-text="l('Kontakt','Contact')"></a></li>
-                <li><a href="impressum.html"  class="text-green-700 hover:underline" x-text="l('Impressum','Imprint')"></a></li>
-                <li><a href="datenschutz.html"class="text-green-700 hover:underline" x-text="l('Datenschutz','Privacy')"></a></li>
+                <!-- Platzhalter für lokale Links -->
             </ul>
         </aside>
 
+        <!-- Inhaltsbereich -->
         <section class="content flex-1 p-6" id="kontakt">
+            <!-- Überschrift -->
             <h1 class="text-2xl font-bold mb-4" x-text="l('Kontakt','Contact')"></h1>
-
+            <!-- E-Mail -->
             <p class="mb-4" x-text="l(
-        'Schreib uns eine E‑Mail an <kontakt@co2‑footprint.example>. Wir antworten schneller, \
-        als du „Dekarbonisierung“ buchstabieren kannst.',
-        'Drop us an e‑mail at <contact@co2‑footprint.example>. We reply faster than you can \
-        spell “decarbonisation”.')"></p>
-
+                'Schreib uns eine E‑Mail an <kontakt@co2‑footprint.example>. Wir antworten schneller, als du „Dekarbonisierung“ buchstabieren kannst.',
+                'Drop us an e‑mail at <contact@co2‑footprint.example>. We reply faster than you can spell “decarbonisation”.'
+            )"></p>
+            <!-- Rauchzeichen -->
             <p class="mb-4" x-text="l(
-        'Alternativ erreichst du uns per Rauchzeichen – aber das finden wir klimatechnisch fragwürdig.',
-        'Smoke signals are also accepted – although we\'d question their carbon footprint.')"></p>
-
+                'Alternativ erreichst du uns per Rauchzeichen – aber das finden wir klimatechnisch fragwürdig.',
+                'Smoke signals are also accepted – although we\'d question their carbon footprint.'
+            )"></p>
+            <!-- Telefon -->
             <p x-text="l(
-        'Telefonisch? Lieber nicht, unsere Kaffeemaschine belegt die Leitung.',
-        'By phone? Better not, our coffee machine keeps the line busy.')"></p>
+                'Telefonisch? Lieber nicht, unsere Kaffeemaschine belegt die Leitung.',
+                'By phone? Better not, our coffee machine keeps the line busy.'
+            )"></p>
         </section>
     </main>
 
+    <!-- Fußzeile -->
     <footer class="bg-gray-200 text-xs text-center p-4">
-        <p x-text="l('© 2025 Klima‑Transparenz‑Initiative – Alle Rechte vorbehalten.',
-                 '© 2025 Climate Transparency Initiative – All rights reserved.')"></p>
-        <p class="mt-1"><a href="impressum.html" class="underline"
-                           x-text="l('Impressum & Datenschutz','Imprint & Privacy')"></a></p>
+        <p x-text="l('© 2025 Klima‑Transparenz‑Initiative – Alle Rechte vorbehalten.','© 2025 Climate Transparency Initiative – All rights reserved.')"></p>
+        <p class="mt-2 space-x-4">
+            <a href="impressum.html" class="underline" x-text="l('Impressum','Imprint')"></a>
+            <a href="datenschutz.html" class="underline" x-text="l('Datenschutz','Privacy')"></a>
+        </p>
     </footer>
 
 </div>
