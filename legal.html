@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" />
-    <title x-text="l('Impressum & Datenschutz | CO₂‑Footprint','Imprint & Privacy | CO₂-Footprint')"></title>
+    <title x-text="l('Impressum & Datenschutz | CO₂-Footprint','Imprint & Privacy | CO₂-Footprint')"></title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Alpine.js -->
@@ -15,146 +15,155 @@
 </head>
 
 <body class="antialiased text-gray-800 bg-white">
-<div class="flex flex-col min-h-screen">
-    <!-- Kopfzeile -->
-    <header class="bg-green-700 text-white">
-        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between py-4 px-4">
-            <div class="flex items-center gap-3">
-                <img src="logo.png" alt="Logo" class="h-12 w-12" />
-                <span class="font-semibold text-2xl md:text-3xl tracking-wide" x-text="l('CO₂‑Footprint','CO₂-Footprint')"></span>
-            </div>
-            <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-sm mt-4 md:mt-0">
-                <nav class="flex items-center gap-4">
-                    <a href="index.html" class="hover:underline" x-text="l('CO₂‑Daten','CO₂ Data')"></a>
-                    <a href="about.html" class="hover:underline" x-text="l('Über uns & Kontakt','About us & Contact')"></a>
-                </nav>
-                <div class="flex items-center gap-2">
-                    <button @click="setLang('de')" :class="lang==='de'?'font-bold underline':''">DE</button><span>|</span>
-                    <button @click="setLang('en')" :class="lang==='en'?'font-bold underline':''">EN</button>
-                </div>
+
+<!-- Kopfzeile -->
+<header class="fixed inset-x-0 top-0 z-50 bg-green-700 text-white h-16">
+    <div class="container mx-auto flex items-center justify-between h-full px-4">
+        <div class="flex items-center gap-3">
+            <img src="logo.png" alt="Logo" class="h-12 w-12" />
+            <span class="font-semibold text-2xl md:text-3xl tracking-wide" x-text="l('CO₂-Footprint','CO₂-Footprint')"></span>
+        </div>
+        <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-sm">
+            <nav class="flex items-center gap-4">
+                <a href="index.html" class="hover:underline" x-text="l('CO₂-Daten','CO₂ Data')"></a>
+                <a href="about.html" class="hover:underline" x-text="l('Über uns & Kontakt','About us & Contact')"></a>
+            </nav>
+            <div class="flex items-center gap-2">
+                <button @click="setLang('de')" :class="lang==='de'?'font-bold underline':''">DE</button><span>|</span>
+                <button @click="setLang('en')" :class="lang==='en'?'font-bold underline':''">EN</button>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- Hauptinhalt -->
-    <main class="flex flex-1 flex-col md:flex-row">
-        <!-- Seitenleiste -->
-        <aside class="sidebar md:w-1/4 bg-gray-100 p-4">
-            <ul class="space-y-2">
-                <li><a href="#impressum" class="hover:underline" x-text="l('Impressum','Imprint')"></a></li>
-                <li><a href="#datenschutz" class="hover:underline" x-text="l('Datenschutz','Privacy')"></a></li>
-            </ul>
-        </aside>
-        <!-- Inhaltsbereich -->
-        <section class="content flex-1 p-6">
-            <section id="impressum">
-                <h1 class="text-2xl font-bold mb-4" x-text="l('Impressum','Imprint')"></h1>
-                <p class="mb-4">
-                    <strong x-text="l('Anbieter:','Provider:')"></strong><br>
-                    <span x-text="l('CO₂‑Footprint Initiative','CO₂ Footprint Initiative')"></span><br>
-                    <span x-text="l('Klimastraße 42, 12345 Musterstadt, Deutschland','Klimastraße 42, 12345 Musterstadt, Germany')"></span>
-                </p>
-                <p class="mb-4">
-                    <strong x-text="l('Vertreten durch:','Represented by:')"></strong><br>
-                    <span x-text="l('Greta B. Treehugger','Greta B. Treehugger')"></span>
-                </p>
-                <p class="mb-4">
-                    <strong x-text="l('Kontakt:','Contact:')"></strong><br>
-                    <span x-text="l('Telefon: +49 (0) 123 456789','Phone: +49 (0) 123 456789')"></span><br>
-                    <span x-text="l('E‑Mail: info@co2-footprint.de','Email: info@co2-footprint.de')"></span>
-                </p>
-                <p class="mb-4">
-                    <strong x-text="l('Registereintrag:','Registration entry:')"></strong><br>
-                    <span x-text="l('Handelsregister, Amtsgericht Musterstadt, HRB 987654','Commercial register, District Court Musterstadt, HRB 987654')"></span>
-                </p>
-                <p class="mb-4">
-                    <strong x-text="l('Umsatzsteuer-ID:','VAT ID:')"></strong><br>
-                    <span x-text="l('DE 123456789','DE 123456789')"></span>
-                </p>
-                <p class="mb-4" x-text="l(
-                    'Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV: Greta B. Treehugger, Klimastraße 42, 12345 Musterstadt','Responsible for content according to § 55 para. 2 RStV: Greta B. Treehugger, Klimastraße 42, 12345 Musterstadt'
-                )"></p>
-                <p>
-                    <span x-text="l('Online-Streitbeilegung:','Online dispute resolution:')"></span> <a href="https://ec.europa.eu/consumers/odr" class="underline" x-text="l('https://ec.europa.eu/consumers/odr','https://ec.europa.eu/consumers/odr')"></a>
-                </p>
-            </section>
-            <section id="datenschutz" class="mt-8">
-                <h1 class="text-2xl font-bold mb-4" x-text="l('Datenschutz','Privacy')"></h1>
-                <!-- Einleitung -->
-                <p class="mb-4" x-text="l(
-        'Wir freuen uns über Ihr Interesse an unserer Website co2-footprint.de. Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Nachfolgend informieren wir Sie ausführlich über den Umgang mit Ihren Daten.',
-        'We appreciate your interest in our website co2-footprint.de. Protecting your personal data is of paramount importance to us. Below, we provide detailed information about how we handle your data.'
-    )"></p>
-                <!-- 1. Verantwortlicher -->
-                <h2 class="text-xl font-semibold mt-4 mb-2" x-text="l('1. Verantwortlicher','1. Data Controller')"></h2>
-                <p class="mb-4">
-                    <span x-text="l('CO₂-Footprint Initiative','CO₂ Footprint Initiative')"></span><br>
-                    <span x-text="l('Klimastraße 42','Klimastraße 42')"></span><br>
-                    <span x-text="l('12345 Musterstadt, Deutschland','12345 Musterstadt, Germany')"></span><br>
-                    <span x-text="l('Telefon: +49 (0) 123 456789','Phone: +49 (0) 123 456789')"></span><br>
-                    <span x-text="l('E-Mail: info@co2-footprint.de','Email: info@co2-footprint.de')"></span>
-                </p>
+<!-- Seitenleiste -->
+<aside
+        class="fixed bg-gray-100 overflow-auto
+           top-16 left-0 right-0 h-16 w-full
+           md:top-16 md:bottom-16 md:left-0 md:right-auto md:h-auto md:w-1/4
+           px-4 py-2 z-40"
+>
+    <ul class="flex md:flex-col justify-around md:justify-start space-x-4 md:space-x-0 md:space-y-2">
+        <li><a href="#impressum" class="hover:underline" x-text="l('Impressum','Imprint')"></a></li>
+        <li><a href="#datenschutz" class="hover:underline" x-text="l('Datenschutz','Privacy')"></a></li>
+    </ul>
+</aside>
 
-                <!-- 1a. Datenschutzbeauftragter -->
-                <h3 class="text-lg font-semibold mt-4 mb-2" x-text="l('1.a Datenschutzbeauftragter','1.a Data Protection Officer')"></h3>
-                <p class="mb-4">
-                    <span x-text="l('Max Mustermann','Max Mustermann')"></span><br>
-                    <span x-text="l('Datenschutzbeauftragter CO₂-Footprint Initiative','Data Protection Officer CO₂ Footprint Initiative')"></span><br>
-                    <span x-text="l('E-Mail: datenschutz@co2-footprint.de','Email: datenschutz@co2-footprint.de')"></span>
-                </p>
-                <!-- 2. Erhebung und Speicherung personenbezogener Daten sowie Art und Zweck der Verarbeitung -->
-                <h2 class="text-xl font-semibold mt-4 mb-2" x-text="l('2. Erhebung und Speicherung personenbezogener Daten sowie Art und Zweck der Verarbeitung','2. Collection and Storage of Personal Data and Purpose of Processing')"></h2>
-                <p class="font-semibold" x-text="l('a) Beim Besuch der Website','a) When Visiting the Website')"></p>
-                <p class="mb-4" x-text="l(
-        'Beim Aufrufen unserer Website werden folgende Daten automatisch erhoben und in Logfiles gespeichert: IP-Adresse, Datum und Uhrzeit, angeforderte URL, Referrer-URL, Browsertyp, Betriebssystem und Provider. Diese Daten dienen der Sicherstellung des Betriebs, der Systemsicherheit und der Optimierung unseres Angebots und werden nach 7 Tagen gelöscht.',
-        'When you visit our website, the following data is automatically collected and stored in log files: IP address, date and time, requested URL, referrer URL, browser type, operating system, and provider. This data is used to ensure operation, system security, and optimization of our service and is deleted after 7 days.'
-    )"></p>
-                <p class="font-semibold" x-text="l('b) Bei Nutzung unseres Kontaktformulars','b) When Using Our Contact Form')"></p>
-                <p class="mb-4" x-text="l(
-        'Wenn Sie das Kontaktformular nutzen, erheben wir Ihre E-Mail-Adresse und weitere Angaben, die Sie freiwillig machen. Diese Daten verwenden wir ausschließlich zur Bearbeitung Ihrer Anfrage und löschen sie nach Abschluss des Vorgangs, sofern keine gesetzliche Aufbewahrungspflicht besteht.',
-        'When you use our contact form, we collect your email address and any other information you voluntarily provide. We use this data solely to process your inquiry and delete it after the process is complete unless legal retention requirements apply.'
-    )"></p>
-                <!-- 3. Weitergabe von Daten -->
-                <h2 class="text-xl font-semibold mt-4 mb-2" x-text="l('3. Weitergabe von Daten','3. Disclosure of Data')"></h2>
-                <p class="mb-4" x-text="l(
-        'Eine Weitergabe Ihrer Daten an Dritte erfolgt nur, wenn Sie eingewilligt haben, dies gesetzlich erlaubt ist oder zur Vertragsabwicklung erforderlich ist (Art. 6 Abs.1 lit. a, b, f DSGVO).',
-        'We only disclose your data to third parties if you have consented, it is legally permitted, or necessary for contract fulfillment (Art. 6(1)(a), (b), (f) GDPR).'
-    )"></p>
-                <!-- 4. Betroffenenrechte -->
-                <h2 class="text-xl font-semibold mt-4 mb-2" x-text="l('4. Betroffenenrechte','4. Data Subject Rights')"></h2>
-                <p class="mb-4" x-text="l(
-        'Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit, Widerspruch sowie Widerruf erteilter Einwilligungen. Zur Ausübung wenden Sie sich bitte per E-Mail an info@co2-footprint.de.',
-        'You have the right to access, correct, delete, restrict processing, data portability, object, and revoke consents. To exercise these rights, please email info@co2-footprint.de.'
-    )"></p>
-                <!-- 5. Widerspruchsrecht -->
-                <h2 class="text-xl font-semibold mt-4 mb-2" x-text="l('5. Widerspruchsrecht','5. Right to Object')"></h2>
-                <p class="mb-4" x-text="l(
-        'Sofern die Datenverarbeitung auf unserem berechtigten Interesse beruht (Art. 6 Abs.1 lit. f DSGVO), können Sie Widerspruch einlegen per E-Mail an info@co2-footprint.de.',
-        'If data processing is based on our legitimate interest (Art. 6(1)(f) GDPR), you may object by emailing info@co2-footprint.de.'
-    )"></p>
-                <!-- 6. Datensicherheit -->
-                <h2 class="text-xl font-semibold mt-4 mb-2" x-text="l('6. Datensicherheit','6. Data Security')"></h2>
-                <p class="mb-4" x-text="l(
-        'Wir treffen angemessene technische und organisatorische Maßnahmen, um Ihre Daten vor unbefugtem Zugriff und Verlust zu schützen (z. B. SSL-Verschlüsselung). Unsere Sicherheitsstandards werden kontinuierlich weiterentwickelt.',
-        'We implement appropriate technical and organizational measures to protect your data against unauthorized access and loss (e.g., SSL encryption). Our security standards are continuously improved.'
-    )"></p>
-                <!-- 7. Aktualität und Änderung dieser Datenschutzerklärung -->
-                <h2 class="text-xl font-semibold mt-4 mb-2" x-text="l('7. Aktualität und Änderung dieser Datenschutzerklärung','7. Validity and Changes to This Privacy Policy')"></h2>
-                <p x-text="l(
-        'Diese Datenschutzerklärung ist aktuell gültig und hat den Stand April 2025. Änderungen wegen geänderter gesetzlicher Vorgaben oder neuer Technologien werden auf dieser Seite veröffentlicht.',
-        'This privacy policy is valid as of April 2025. Changes due to amended legal requirements or new technologies will be published on this page.'
-    )"></p>
-            </section>
+<!-- Hauptinhalt -->
+<main class="overflow-auto pt-32 pb-16 md:pt-16 md:pb-16 md:ml-[25%] min-h-screen">
+    <div class="container mx-auto p-4 space-y-8">
+
+        <section id="impressum">
+            <h1 class="text-2xl font-bold mb-4" x-text="l('Impressum','Imprint')"></h1>
+            <p class="mb-4">
+                <strong x-text="l('Anbieter:','Provider:')"></strong><br>
+                <span x-text="l('CO₂-Footprint Initiative','CO₂ Footprint Initiative')"></span><br>
+                <span x-text="l('Klimastraße 42, 12345 Musterstadt, Deutschland','Klimastraße 42, 12345 Musterstadt, Germany')"></span>
+            </p>
+            <p class="mb-4">
+                <strong x-text="l('Vertreten durch:','Represented by:')"></strong><br>
+                <span x-text="l('Greta B. Treehugger','Greta B. Treehugger')"></span>
+            </p>
+            <p class="mb-4">
+                <strong x-text="l('Kontakt:','Contact:')"></strong><br>
+                <span x-text="l('Telefon: +49 (0) 123 456789','Phone: +49 (0) 123 456789')"></span><br>
+                <span x-text="l('E-Mail: info@co2-footprint.de','Email: info@co2-footprint.de')"></span>
+            </p>
+            <p class="mb-4">
+                <strong x-text="l('Registereintrag:','Registration entry:')"></strong><br>
+                <span x-text="l('Handelsregister, Amtsgericht Musterstadt, HRB 987654','Commercial register, District Court Musterstadt, HRB 987654')"></span>
+            </p>
+            <p class="mb-4">
+                <strong x-text="l('Umsatzsteuer-ID:','VAT ID:')"></strong><br>
+                <span x-text="l('DE 123456789','DE 123456789')"></span>
+            </p>
+            <p class="mb-4" x-text="l(
+            'Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV: Greta B. Treehugger, Klimastraße 42, 12345 Musterstadt',
+            'Responsible for content according to § 55 para. 2 RStV: Greta B. Treehugger, Klimastraße 42, 12345 Musterstadt'
+        )"></p>
+            <p>
+                <span x-text="l('Online-Streitbeilegung:','Online dispute resolution:')"></span>
+                <a href="https://ec.europa.eu/consumers/odr" class="underline" x-text="l('https://ec.europa.eu/consumers/odr','https://ec.europa.eu/consumers/odr')"></a>
+            </p>
         </section>
-    </main>
 
-    <!-- Fußzeile -->
-    <footer class="bg-gray-200 text-xs text-center p-4">
-        <p x-text="l('© 2025 CO₂-Footprint Initiative – Alle Rechte vorbehalten.','© 2025 CO₂ Footprint Initiative – All rights reserved.')"></p>
-        <p class="mt-2"><a href="legal.html" class="underline font-bold" x-text="l('Impressum & Datenschutzerklärung','Imprint & Privacy')"></a></p>
-    </footer>
+        <section id="datenschutz" class="mt-8">
+            <h1 class="text-2xl font-bold mb-4" x-text="l('Datenschutz','Privacy')"></h1>
+            <p class="mb-4" x-text="l(
+            'Wir freuen uns über Ihr Interesse an unserer Website co2-footprint.de. Der Schutz Ihrer persönlichen Daten ist uns ein besonderes Anliegen. Nachfolgend informieren wir Sie ausführlich über den Umgang mit Ihren Daten.',
+            'We appreciate your interest in our website co2-footprint.de. Protecting your personal data is of paramount importance to us. Below, we provide detailed information about how we handle your data.'
+        )"></p>
 
-</div>
+            <h2 class="text-xl font-semibold mt-4 mb-2" x-text="l('1. Verantwortlicher','1. Data Controller')"></h2>
+            <p class="mb-4">
+                <span x-text="l('CO₂-Footprint Initiative','CO₂ Footprint Initiative')"></span><br>
+                <span x-text="l('Klimastraße 42','Klimastraße 42')"></span><br>
+                <span x-text="l('12345 Musterstadt, Deutschland','12345 Musterstadt, Germany')"></span><br>
+                <span x-text="l('Telefon: +49 (0) 123 456789','Phone: +49 (0) 123 456789')"></span><br>
+                <span x-text="l('E-Mail: info@co2-footprint.de','Email: info@co2-footprint.de')"></span>
+            </p>
+
+            <h3 class="text-lg font-semibold mt-4 mb-2" x-text="l('1.a Datenschutzbeauftragter','1.a Data Protection Officer')"></h3>
+            <p class="mb-4">
+                <span x-text="l('Max Mustermann','Max Mustermann')"></span><br>
+                <span x-text="l('Datenschutzbeauftragter CO₂-Footprint Initiative','Data Protection Officer CO₂ Footprint Initiative')"></span><br>
+                <span x-text="l('E-Mail: datenschutz@co2-footprint.de','Email: datenschutz@co2-footprint.de')"></span>
+            </p>
+
+            <h2 class="text-xl font-semibold mt-4 mb-2" x-text="l('2. Erhebung und Speicherung personenbezogener Daten sowie Art und Zweck der Verarbeitung','2. Collection and Storage of Personal Data and Purpose of Processing')"></h2>
+            <p class="font-semibold" x-text="l('a) Beim Besuch der Website','a) When Visiting the Website')"></p>
+            <p class="mb-4" x-text="l(
+            'Beim Aufrufen unserer Website werden folgende Daten automatisch erhoben und in Logfiles gespeichert: IP-Adresse, Datum und Uhrzeit, angeforderte URL, Referrer-URL, Browsertyp, Betriebssystem und Provider. Diese Daten dienen der Sicherstellung des Betriebs, der Systemsicherheit und der Optimierung unseres Angebots und werden nach 7 Tagen gelöscht.',
+            'When you visit our website, the following data is automatically collected and stored in log files: IP address, date and time, requested URL, referrer URL, browser type, operating system, and provider. This data is used to ensure operation, system security, and optimization of our service and is deleted after 7 days.'
+        )"></p>
+            <p class="font-semibold" x-text="l('b) Bei Nutzung unseres Kontaktformulars','b) When Using Our Contact Form')"></p>
+            <p class="mb-4" x-text="l(
+            'Wenn Sie das Kontaktformular nutzen, erheben wir Ihre E-Mail-Adresse und weitere Angaben, die Sie freiwillig machen. Diese Daten verwenden wir ausschließlich zur Bearbeitung Ihrer Anfrage und löschen sie nach Abschluss des Vorgangs, sofern keine gesetzliche Aufbewahrungspflicht besteht.',
+            'When you use our contact form, we collect your email address and any other information you voluntarily provide. We use this data solely to process your inquiry and delete it after the process is complete unless legal retention requirements apply.'
+        )"></p>
+
+            <h2 class="text-xl font-semibold mt-4 mb-2" x-text="l('3. Weitergabe von Daten','3. Disclosure of Data')"></h2>
+            <p class="mb-4" x-text="l(
+            'Eine Weitergabe Ihrer Daten an Dritte erfolgt nur, wenn Sie eingewilligt haben, dies gesetzlich erlaubt ist oder zur Vertragsabwicklung erforderlich ist (Art. 6 Abs.1 lit. a, b, f DSGVO).',
+            'We only disclose your data to third parties if you have consented, it is legally permitted, or necessary for contract fulfillment (Art. 6(1)(a), (b), (f) GDPR).'
+        )"></p>
+
+            <h2 class="text-xl font-semibold mt-4 mb-2" x-text="l('4. Betroffenenrechte','4. Data Subject Rights')"></h2>
+            <p class="mb-4" x-text="l(
+            'Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit, Widerspruch sowie Widerruf erteilter Einwilligungen. Zur Ausübung wenden Sie sich bitte per E-Mail an info@co2-footprint.de.',
+            'You have the right to access, correct, delete, restrict processing, data portability, object, and revoke consents. To exercise these rights, please email info@co2-footprint.de.'
+        )"></p>
+
+            <h2 class="text-xl font-semibold mt-4 mb-2" x-text="l('5. Widerspruchsrecht','5. Right to Object')"></h2>
+            <p class="mb-4" x-text="l(
+            'Sofern die Datenverarbeitung auf unserem berechtigten Interesse beruht (Art. 6 Abs.1 lit. f DSGVO), können Sie Widerspruch einlegen per E-Mail an info@co2-footprint.de.',
+            'If data processing is based on our legitimate interest (Art. 6(1)(f) GDPR), you may object by emailing info@co2-footprint.de.'
+        )"></p>
+
+            <h2 class="text-xl font-semibold mt-4 mb-2" x-text="l('6. Datensicherheit','6. Data Security')"></h2>
+            <p class="mb-4" x-text="l(
+            'Wir treffen angemessene technische und organisatorische Maßnahmen, um Ihre Daten vor unbefugtem Zugriff und Verlust zu schützen (z. B. SSL-Verschlüsselung). Unsere Sicherheitsstandards werden kontinuierlich weiterentwickelt.',
+            'We implement appropriate technical and organizational measures to protect your data against unauthorized access and loss (e.g., SSL encryption). Our security standards are continuously improved.'
+        )"></p>
+
+            <h2 class="text-xl font-semibold mt-4 mb-2" x-text="l('7. Aktualität und Änderung dieser Datenschutzerklärung','7. Validity and Changes to This Privacy Policy')"></h2>
+            <p x-text="l(
+            'Diese Datenschutzerklärung ist aktuell gültig und hat den Stand April 2025. Änderungen wegen geänderter gesetzlicher Vorgaben oder neuer Technologien werden auf dieser Seite veröffentlicht.',
+            'This privacy policy is valid as of April 2025. Changes due to amended legal requirements or new technologies will be published on this page.'
+        )"></p>
+        </section>
+
+    </div>
+</main>
+
+<!-- Fußzeile -->
+<footer class="fixed inset-x-0 bottom-0 bg-gray-200 text-xs text-center p-4 h-16">
+    <p x-text="l('© 2025 CO₂-Footprint Initiative – Alle Rechte vorbehalten.','© 2025 CO₂ Footprint Initiative – All rights reserved.')"></p>
+    <p class="mt-2">
+        <a href="legal.html" class="underline font-bold" x-text="l('Impressum & Datenschutzerklärung','Imprint & Privacy')"></a>
+    </p>
+</footer>
+
 <script src="app.js"></script>
 </body>
 </html>

@@ -15,103 +15,110 @@
 </head>
 
 <body class="antialiased text-gray-800 bg-white">
-<div class="flex flex-col min-h-screen">
-    <!-- Kopfzeile -->
-    <header class="bg-green-700 text-white">
-        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between py-4 px-4">
-            <div class="flex items-center gap-3">
-                <img src="logo.png" alt="Logo" class="h-12 w-12" />
-                <span class="font-semibold text-2xl md:text-3xl tracking-wide" x-text="l('CO₂-Footprint','CO₂-Footprint')"></span>
-            </div>
-            <!-- Navigation & Sprache -->
-            <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-sm mt-4 md:mt-0">
-                <nav class="flex items-center gap-4">
-                    <a href="index.html" class="hover:underline" x-text="l('CO₂-Daten','CO₂ Data')"></a>
-                    <a href="about.html" class="hover:underline font-bold underline" x-text="l('Über uns & Kontakt','About us & Contact')"></a>
-                </nav>
-                <div class="flex items-center gap-2">
-                    <button @click="setLang('de')" :class="lang==='de'?'font-bold underline':''">DE</button><span>|</span>
-                    <button @click="setLang('en')" :class="lang==='en'?'font-bold underline':''">EN</button>
-                </div>
+
+<!-- Kopfzeile -->
+<header class="fixed inset-x-0 top-0 z-50 bg-green-700 text-white h-16">
+    <div class="container mx-auto flex items-center justify-between h-full px-4">
+        <div class="flex items-center gap-3">
+            <img src="logo.png" alt="Logo" class="h-12 w-12" />
+            <span class="font-semibold text-2xl md:text-3xl tracking-wide" x-text="l('CO₂-Footprint','CO₂-Footprint')"></span>
+        </div>
+        <!-- Navigation & Sprache -->
+        <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-sm">
+            <nav class="flex items-center gap-4">
+                <a href="index.html" class="hover:underline" x-text="l('CO₂-Daten','CO₂ Data')"></a>
+                <a href="about.html" class="hover:underline font-bold underline" x-text="l('Über uns & Kontakt','About us & Contact')"></a>
+            </nav>
+            <div class="flex items-center gap-2">
+                <button @click="setLang('de')" :class="lang==='de'?'font-bold underline':''">DE</button><span>|</span>
+                <button @click="setLang('en')" :class="lang==='en'?'font-bold underline':''">EN</button>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- Hauptinhalt -->
-    <main class="flex flex-1 flex-col md:flex-row">
-        <!-- Seitenleiste -->
-        <aside class="sidebar md:w-1/4 bg-gray-100 p-4">
-            <ul class="space-y-2">
-                <li><a href="#ueber" class="hover:underline" x-text="l('Über uns','About us')"></a></li>
-                <li><a href="#kontakt" class="hover:underline" x-text="l('Kontakt','Contact')"></a></li>
-            </ul>
-        </aside>
-        <!-- Inhaltsbereich -->
-        <section class="content flex-1 p-6">
-            <!-- Über uns -->
-            <section id="ueber">
-                <h1 class="text-3xl font-bold mb-6" x-text="l('Über uns','About us')"></h1>
-                <p class="mb-4" x-text="l(
-                    'CO₂-Footprint entstand 2020 aus der Vision, den versteckten CO₂-Abdruck digitaler Produkte zugänglich zu machen. Unser Gründerteam aus Entwickelnden und Klimaforscher:innen erkannte, dass der Energieverbrauch und die Infrastruktur von Anwendungen oft unsichtbare Emissionstreiber sind. Wir entwickeln Werkzeuge, die diesen Einfluss transparent und vergleichbar machen.',
-                    'CO₂ Footprint was born in 2020 from the vision of making the hidden carbon footprint of digital products visible. Our founding team of developers and climate scientists recognized that the energy consumption and infrastructure of applications often drive emissions unseen. We build tools to make this impact transparent and comparable.'
-                )"></p>
-                <p class="mb-4" x-text="l(
-                    'Seitdem sind wir zu einer internationalen Gemeinschaft von über 150 Contributors gewachsen. Unsere offene Plattform wird kontinuierlich um neue Metriken ergänzt – von Serverbetrieb und Datenübertragung bis hin zu Client-seitigem Rendering. Jede Erweiterung basiert auf fundierter Forschung und wird durch Peer-Reviews abgesichert.',
-                    'Since then, we have grown into an international community of over 150 contributors. Our open platform is continuously enriched with new metrics—from server operations and data transfer to client-side rendering. Every addition is grounded in rigorous research and validated through peer review.'
-                )"></p>
-                <p class="mb-4" x-text="l(
-                    'Unser Ansatz kombiniert modernste Messtechniken mit praxiserprobten Reduktionsstrategien. Durch Benchmarking-Module unterstützen wir Teams dabei, ihre Infrastruktur zu optimieren und nachhaltigere Architekturentscheidungen zu treffen. Dabei legen wir besonderen Wert auf Benutzerfreundlichkeit und nahtlose Integration in bestehende Workflows.',
-                    'Our approach blends cutting-edge measurement techniques with field-tested reduction strategies. Through benchmarking modules, we help teams optimize their infrastructure and make sustainable architectural decisions. We prioritize usability and seamless integration into existing workflows.'
-                )"></p>
-                <p class="mb-4" x-text="l(
-                    'Dank Partnerschaften mit Universitäten, NGOs und Technologie-Anbietern fließen stets die neuesten wissenschaftlichen Erkenntnisse in unsere Berechnungsmodelle ein. Unsere Roadmap umfasst geplante Features wie Reporting-APIs, CO₂-Kompensationsoptionen und benutzerdefinierte Unternehmensdashboards.',
-                    'Thanks to partnerships with universities, NGOs, and technology providers, the latest scientific findings are continuously incorporated into our calculation models. Our roadmap includes planned features such as reporting APIs, carbon offset options, and custom corporate dashboards.'
-                )"></p>
-                <p class="mb-4" x-text="l(
-                    'Als Open-Source-Projekt fördern wir aktive Teilnahme: Ob Code-Beiträge, Übersetzungen oder Forschungskooperationen – jede Stimme formt die Weiterentwicklung. Unser Repository auf GitHub ist der zentrale Treffpunkt für Issues, Pull-Requests und gemeinschaftliche Diskussionen.',
-                    'As an open-source project, we encourage active participation: from code contributions and translations to research collaborations—every voice shapes our evolution. Our GitHub repository is the central hub for issues, pull requests, and community discussions.'
-                )"></p>
-                <p x-text="l(
-                    'Unsere Mission: Eine digitale Welt ermöglichen, in der Wissen über CO₂-Emissionen genauso selbstverständlich ist wie Performance-Metriken. Gemeinsam gestalten wir den Weg zu ressourcenschonender Softwareentwicklung.',
-                    'Our mission: enabling a digital world where knowledge of CO₂ emissions is as commonplace as performance metrics. Together, we pave the way for resource-efficient software development.'
-                )"></p>
-            </section>
-            <!-- Kontakt -->
-            <section id="kontakt" class="mt-10">
-                <h1 class="text-3xl font-bold mb-6" x-text="l('Kontakt','Contact')"></h1>
-                <p class="mb-4">
-                    <span x-text="l('Technische Anfragen und Projektkooperationen:','Technical inquiries and project collaborations:')"></span>
-                    <a href="mailto:kontakt@co2-footprint.de" class="underline">kontakt@co2-footprint.de</a>
-                    <span x-text="l(' Wir antworten in der Regel innerhalb von 24 Stunden.',' We usually respond within 24 hours.')"></span>
-                </p>
-                <p class="mb-4">
-                    <span x-text="l('Besuchen Sie unser GitHub für Updates, Issues und Mitwirkung:','Visit our GitHub for updates, issues, and contributions:')"></span>
-                    <a href="https://github.com/cantosun99/co2-footprint-project" class="underline">github.com/cantosun99/co2-footprint-project</a>
-                </p>
-                <p class="mb-4" x-text="l(
-                    'Telefonische Erreichbarkeit: +49 (0) 123 456789, Mo–Fr 9–17 Uhr. Sollten Sie uns nicht erreichen, hinterlassen Sie bitte eine Nachricht – wir rufen umgehend zurück.',
-                    'Phone availability: +49 (0) 123 456789, Mon–Fri 9 AM–5 PM. If we miss your call, please leave a message – we will get back to you promptly.'
-                )"></p>
-                <p class="mb-4">
-                    <span x-text="l('Presseanfragen:','Press inquiries:')"></span>
-                    <a href="mailto:presse@co2-footprint.de" class="underline">presse@co2-footprint.de</a>
-                    <span x-text="l(' – wir garantieren professionelle und zeitnahe Bearbeitung.',' – we guarantee professional and timely handling.')"></span>
-                </p>
-                <p x-text="l(
-                    'Folgen Sie uns auf Twitter (@CO2_Footprint) und LinkedIn für Neuigkeiten, Veranstaltungen und Insights aus unserer Community.',
-                    'Follow us on Twitter (@CO2_Footprint) and LinkedIn for news, events, and insights from our community.'
-                )"></p>
-            </section>
+<!-- Seitenleiste -->
+<aside
+        class="fixed bg-gray-100 overflow-auto
+           top-16 left-0 right-0 h-16 w-full
+           md:top-16 md:bottom-16 md:left-0 md:right-auto md:h-auto md:w-1/4
+           px-4 py-2 z-40"
+>
+    <ul class="flex md:flex-col justify-around md:justify-start space-x-4 md:space-x-0 md:space-y-2">
+        <li><a href="#ueber" class="hover:underline" x-text="l('Über uns','About us')"></a></li>
+        <li><a href="#kontakt" class="hover:underline" x-text="l('Kontakt','Contact')"></a></li>
+    </ul>
+</aside>
+
+<!-- Hauptinhalt -->
+<main class="overflow-auto pt-32 pb-16 md:pt-16 md:pb-16 md:ml-[25%] min-h-screen">
+    <div class="container mx-auto p-4 space-y-8">
+        <!-- Über uns -->
+        <section id="ueber">
+            <h1 class="text-3xl font-bold mb-6" x-text="l('Über uns','About us')"></h1>
+            <p class="mb-4" x-text="l(
+            'CO₂-Footprint entstand 2020 aus der Vision, den versteckten CO₂-Abdruck digitaler Produkte zugänglich zu machen. Unser Gründerteam aus Entwickelnden und Klimaforscher:innen erkannte, dass der Energieverbrauch und die Infrastruktur von Anwendungen oft unsichtbare Emissionstreiber sind. Wir entwickeln Werkzeuge, die diesen Einfluss transparent und vergleichbar machen.',
+            'CO₂ Footprint was born in 2020 from the vision of making the hidden carbon footprint of digital products visible. Our founding team of developers and climate scientists recognized that the energy consumption and infrastructure of applications often drive emissions unseen. We build tools to make this impact transparent and comparable.'
+        )"></p>
+            <p class="mb-4" x-text="l(
+            'Seitdem sind wir zu einer internationalen Gemeinschaft von über 150 Contributors gewachsen. Unsere offene Plattform wird kontinuierlich um neue Metriken ergänzt – von Serverbetrieb und Datenübertragung bis hin zu Client-seitigem Rendering. Jede Erweiterung basiert auf fundierter Forschung und wird durch Peer-Reviews abgesichert.',
+            'Since then, we have grown into an international community of over 150 contributors. Our open platform is continuously enriched with new metrics—from server operations and data transfer to client-side rendering. Every addition is grounded in rigorous research and validated through peer review.'
+        )"></p>
+            <p class="mb-4" x-text="l(
+            'Unser Ansatz kombiniert modernste Messtechniken mit praxiserprobten Reduktionsstrategien. Durch Benchmarking-Module unterstützen wir Teams dabei, ihre Infrastruktur zu optimieren und nachhaltigere Architekturentscheidungen zu treffen. Dabei legen wir besonderen Wert auf Benutzerfreundlichkeit und nahtlose Integration in bestehenden Workflows.',
+            'Our approach blends cutting-edge measurement techniques with field-tested reduction strategies. Through benchmarking modules, we help teams optimize their infrastructure and make sustainable architectural decisions. We prioritize usability and seamless integration into existing workflows.'
+        )"></p>
+            <p class="mb-4" x-text="l(
+            'Dank Partnerschaften mit Universitäten, NGOs und Technologie-Anbietern fließen stets die neuesten wissenschaftlichen Erkenntnisse in unsere Berechnungsmodelle ein. Unsere Roadmap umfasst geplante Features wie Reporting-APIs, CO₂-Kompensationsoptionen und benutzerdefinierte Unternehmensdashboards.',
+            'Thanks to partnerships with universities, NGOs, and technology providers, the latest scientific findings are continuously incorporated into our calculation models. Our roadmap includes planned features such as reporting APIs, carbon offset options, and custom corporate dashboards.'
+        )"></p>
+            <p class="mb-4" x-text="l(
+            'Als Open-Source-Projekt fördern wir aktive Teilnahme: Ob Code-Beiträge, Übersetzungen oder Forschungskooperationen – jede Stimme formt die Weiterentwicklung. Unser Repository auf GitHub ist der zentrale Treffpunkt für Issues, Pull-Requests und gemeinschaftliche Diskussionen.',
+            'As an open-source project, we encourage active participation: from code contributions and translations to research collaborations—every voice shapes our evolution. Our GitHub repository is the central hub for issues, pull requests, and community discussions.'
+        )"></p>
+            <p x-text="l(
+            'Unsere Mission: Eine digitale Welt ermöglichen, in der Wissen über CO₂-Emissionen genauso selbstverständlich ist wie Performance-Metriken. Gemeinsam gestalten wir den Weg zu ressourcenschonender Softwareentwicklung.',
+            'Our mission: enabling a digital world where knowledge of CO₂ emissions is as commonplace as performance metrics. Together, we pave the way for resource-efficient software development.'
+        )"></p>
         </section>
-    </main>
 
-    <!-- Fußzeile -->
-    <footer class="bg-gray-200 text-xs text-center p-4">
-        <p x-text="l('© 2025 CO₂-Footprint Initiative – Alle Rechte vorbehalten.','© 2025 CO₂ Footprint Initiative – All rights reserved.')"></p>
-        <p class="mt-2"><a href="legal.html" class="underline font-bold" x-text="l('Impressum & Datenschutzerklärung','Imprint & Privacy')"></a></p>
-    </footer>
+        <!-- Kontakt -->
+        <section id="kontakt" class="mt-10">
+            <h1 class="text-3xl font-bold mb-6" x-text="l('Kontakt','Contact')"></h1>
+            <p class="mb-4">
+                <span x-text="l('Technische Anfragen und Projektkooperationen:','Technical inquiries and project collaborations:')"></span>
+                <a href="mailto:kontakt@co2-footprint.de" class="underline">kontakt@co2-footprint.de</a>
+                <span x-text="l(' Wir antworten in der Regel innerhalb von 24 Stunden.',' We usually respond within 24 hours.')"></span>
+            </p>
+            <p class="mb-4">
+                <span x-text="l('Besuchen Sie unser GitHub für Updates, Issues und Mitwirkung:','Visit our GitHub for updates, issues, and contributions:')"></span>
+                <a href="https://github.com/cantosun99/co2-footprint-project" class="underline">github.com/cantosun99/co2-footprint-project</a>
+            </p>
+            <p class="mb-4" x-text="l(
+            'Telefonische Erreichbarkeit: +49 (0) 123 456789, Mo–Fr 9–17 Uhr. Sollten Sie uns nicht erreichen, hinterlassen Sie bitte eine Nachricht – wir rufen umgehend zurück.',
+            'Phone availability: +49 (0) 123 456789, Mon–Fri 9 AM–5 PM. If we miss your call, please leave a message – we will get back to you promptly.'
+        )"></p>
+            <p class="mb-4">
+                <span x-text="l('Presseanfragen:','Press inquiries:')"></span>
+                <a href="mailto:presse@co2-footprint.de" class="underline">presse@co2-footprint.de</a>
+                <span x-text="l(' – wir garantieren professionelle und zeitnahe Bearbeitung.',' – we guarantee professional and timely handling.')"></span>
+            </p>
+            <p x-text="l(
+            'Folgen Sie uns auf Twitter (@CO2_Footprint) und LinkedIn für Neuigkeiten, Veranstaltungen und Insights aus unserer Community.',
+            'Follow us on Twitter (@CO2_Footprint) and LinkedIn for news, events, and insights from our community.'
+        )"></p>
+        </section>
+    </div>
+</main>
 
-</div>
+<!-- Fußzeile -->
+<footer class="fixed inset-x-0 bottom-0 bg-gray-200 text-xs text-center p-4 h-16">
+    <p x-text="l('© 2025 CO₂-Footprint Initiative – Alle Rechte vorbehalten.','© 2025 CO₂ Footprint Initiative – All rights reserved.')"></p>
+    <p class="mt-2">
+        <a href="legal.html" class="underline font-bold" x-text="l('Impressum & Datenschutzerklärung','Imprint & Privacy')"></a>
+    </p>
+</footer>
+
 <script src="app.js"></script>
 </body>
 </html>
