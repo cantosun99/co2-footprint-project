@@ -1,7 +1,26 @@
+/* Desktop: Nur Header (4rem) berücksichtigen */
+section {
+    scroll-margin-top: 4rem; /* Header-Höhe (h-16) */
+}
+
+/* Mobil (vertikal): Header + Sidebar (je 4rem) berücksichtigen */
+@media (max-width: 768px) {
+    section {
+        scroll-margin-top: 8rem; /* Header (4rem) + Sidebar (4rem) */
+    }
+}
+
 /* Sidebar bei RTL rechts anordnen */
-[dir="rtl"] .sidebar { order: 2; }
+[dir="rtl"] .sidebar {
+    order: 2;
+}
+
 /* Inhalt bei RTL links anordnen */
-[dir="rtl"] .content { order: 1; }
+[dir="rtl"] .content {
+    order: 1;
+}
 
 /* Weiche Animation beim Seitenleistenwechsel */
-.sidebar { transition: order .3s ease; }
+.sidebar {
+    transition: order 0.3s ease;
+}
