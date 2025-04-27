@@ -1,158 +1,241 @@
 <!DOCTYPE html>
 <html x-data="co2Table()" lang="de" dir="ltr">
-
 <head>
+
+    <!-- Metadata -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="icon" href="/favicon.ico" />
     <title x-text="l('Über uns & Kontakt | CO₂-Footprint','About us & Contact | CO₂-Footprint')"></title>
 
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css" />
-    <script defer src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Alpine.js -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
 <body class="antialiased text-gray-800 bg-white">
+
 <!-- Header -->
 <header class="fixed inset-x-0 top-0 z-50 bg-green-700 text-white h-16">
     <div class="container mx-auto flex items-center justify-between h-full px-4">
-        <div class="flex items-center gap-3">
-            <img src="logo.png" alt="Logo der CO₂-Footprint Initiative" class="h-12 w-12" />
-            <span class="font-semibold text-2xl md:text-3xl tracking-wide"
-                  x-text="l('CO₂-Footprint','CO₂-Footprint')"></span>
-        </div>
+
+        <!-- Logo and title -->
+        <a href="index.html" class="flex items-center gap-3">
+            <img src="logo.png" alt="Logo" class="h-12 w-12" />
+            <span
+                    class="font-semibold text-2xl md:text-3xl tracking-wide"
+                    x-text="l('CO₂-Footprint','CO₂-Footprint')"
+            ></span>
+        </a>
+
+        <!-- Navigation links -->
         <div class="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-sm">
-            <nav class="flex items-center gap-4" aria-label="Hauptnavigation">
-                <a href="index.html" class="hover:underline"
-                   x-text="l('CO₂-Daten','CO₂ Data')"></a>
-                <a href="about.html" class="hover:underline font-bold underline"
-                   x-text="l('Über uns & Kontakt','About us & Contact')"></a>
+            <nav class="flex items-center gap-4">
+                <a
+                        href="index.html"
+                        class="hover:underline"
+                        :class="{ 'font-bold underline': window.location.pathname.endsWith('index.html') }"
+                        x-text="l('CO₂-Daten','CO₂ Data')"
+                ></a>
+                <a
+                        href="about.html"
+                        class="hover:underline"
+                        :class="{ 'font-bold underline': window.location.pathname.endsWith('about.html') }"
+                        x-text="l('Über uns & Kontakt','About us & Contact')"
+                ></a>
             </nav>
             <div class="flex items-center gap-2">
-                <button @click="setLang('de')" :class="lang==='de' ? 'font-bold underline' : ''">DE</button>
-                <span aria-hidden="true">|</span>
-                <button @click="setLang('en')" :class="lang==='en' ? 'font-bold underline' : ''">EN</button>
+
+                <!-- Language switch -->
+                <button @click="setLang('de')" :class="lang==='de'?'font-bold underline':''">
+                    DE
+                </button>
+                <span>|</span>
+                <button @click="setLang('en')" :class="lang==='en'?'font-bold underline':''">
+                    EN
+                </button>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Sidebar -->
-<aside class="sidebar fixed bg-gray-100 overflow-auto
-                     top-16 left-0 right-0 h-16 w-full
-                     md:top-16 md:bottom-16 md:left-0 md:right-auto md:h-auto md:w-1/4
-                     px-4 py-2 z-40"
-       aria-label="Seitennavigation">
-    <ul class="flex md:flex-col justify-around md:justify-start space-x-4 md:space-x-0 md:space-y-2">
-        <li><a href="#ueber" class="hover:underline" x-text="l('Über uns','About us')"></a></li>
-        <li><a href="#kontakt" class="hover:underline" x-text="l('Kontakt','Contact')"></a></li>
-        <li><a href="#formular" class="hover:underline" x-text="l('Kontaktformular','Contact Form')"></a></li>
-    </ul>
-</aside>
+<!-- Layout -->
+<div class="pt-16 pb-16 md:flex">
 
-<!-- Main content -->
-<main class="content overflow-auto pt-32 pb-16 md:pt-16 md:pb-16 md:ml-[25%] min-h-screen" role="main">
-    <div class="container mx-auto p-4 space-y-8">
-        <!-- Über uns -->
-        <section id="ueber">
-            <h1 class="text-3xl font-bold mb-6" x-text="l('Über uns','About us')"></h1>
-            <p class="mb-4"
-               x-text="l(
-                     'CO₂-Footprint entstand 2020 aus Langeweile während des Lockdowns mit der Vision, den versteckten CO₂-Fußabdruck digitaler Produkte sichtbar zu machen. Unser Gründerteam erkannte, dass der Energieverbrauch von Leerzeichen anstatt Tabs ein oft unsichtbarer Emissionstreiber ist. Wir entwickeln Werkzeuge, die diesen Einfluss transparent und vergleichbar machen.',
-                     'CO₂-Footprint was born out of boredom during lockdown in 2020 with the vision of making the hidden carbon footprint of digital products visible. Our founding team recognized that the energy consumption behind using spaces instead of tabs often is an invisible driver of emissions. We build tools to make this impact transparent and comparable.'
-                   )"></p>
-            <p class="mb-4"
-               x-text="l(
-                     'Seitdem sind wir zu einer internationalen Gemeinschaft von über 150 Contributors gewachsen. Unsere offene Plattform wird kontinuierlich um neue Metriken ergänzt – von Serverbetrieb und Datenübertragung bis hin zu Client-seitigem Rendering. Jede Erweiterung basiert auf fundierter Fiktion und wird durch Peer-Reviews abgesichert.',
-                     'Since then, we have grown into an international community of over 150 contributors. Our open platform is continuously enriched with new metrics—from server operations and data transfer to client-side rendering. Every addition is built on solid fiction and backed up by peer reviews'
-                   )"></p>
-            <p class="mb-4"
-               x-text="l(
-                     'Unser Ansatz kombiniert modernste Messtechniken mit praxiserprobten Reduktionsstrategien. Durch Benchmarking-Module unterstützen wir Teams dabei, ihre Infrastruktur zu optimieren und nachhaltigere Architekturentscheidungen zu treffen. Dabei legen wir besonderen Wert auf Benutzerfreundlichkeit und nahtlose Integration in bestehenden Workflows.',
-                     'Our approach blends cutting-edge measurement techniques with field-tested reduction strategies. Through benchmarking modules, we help teams optimize their infrastructure and make sustainable architectural decisions. We prioritize usability and seamless integration into existing workflows.'
-                   )"></p>
-            <p class="mb-4"
-               x-text="l(
-                     'Dank Partnerschaften mit Universitäten, NGOs und Technologie-Anbietern fließen stets die neuesten wissenschaftlichen Erkenntnisse in unsere Berechnungsmodelle ein. Unsere Roadmap umfasst geplante Features wie Reporting-APIs, CO₂-Kompensationsoptionen und benutzerdefinierte Unternehmensdashboards.',
-                     'Thanks to partnerships with universities, NGOs, and technology providers, the latest scientific findings are continuously incorporated into our calculation models. Our roadmap includes planned features such as reporting APIs, carbon offset options, and custom corporate dashboards.'
-                   )"></p>
-        </section>
+    <!-- Sidebar -->
+    <aside
+            class="sidebar bg-gray-100 px-4 py-4 w-full md:w-1/4 z-40 overflow-y-auto h-auto md:h-[calc(100vh-8rem)]"
+            aria-label="Seitennavigation"
+    >
+        <div
+                class="mb-4 p-3 rounded-lg shadow bg-white bg-opacity-90 text-sm text-gray-700"
+                x-show="co2Emission !== null"
+        >
+            <span x-text="l('CO₂-Verbrauch dieser Seite:','CO₂ consumption of this page:')"></span>
+            <span x-text="co2Emission + ' g'"></span>
+        </div>
+        <ul class="flex md:flex-col justify-around md:justify-start space-x-4 md:space-x-0 md:space-y-2">
+            <li>
+                <a
+                        href="#ueber"
+                        class="hover:underline"
+                        :class="{'font-bold underline': window.location.hash === '#ueber'}"
+                        x-text="l('Über uns','About us')"
+                ></a>
+            </li>
+            <li>
+                <a
+                        href="#kontakt"
+                        class="hover:underline"
+                        :class="{'font-bold underline': window.location.hash === '#kontakt'}"
+                        x-text="l('Kontakt','Contact')"
+                ></a>
+            </li>
+            <li>
+                <a
+                        href="#formular"
+                        class="hover:underline"
+                        :class="{'font-bold underline': window.location.hash === '#formular'}"
+                        x-text="l('Kontaktformular','Contact Form')"
+                ></a>
+            </li>
+        </ul>
+    </aside>
 
-        <!-- Kontakt -->
-        <section id="kontakt" class="mt-10">
-            <h1 class="text-3xl font-bold mb-6" x-text="l('Kontakt','Contact')"></h1>
-            <p class="mb-4">
-                <span x-text="l('Technische Anfragen und Projektkooperationen:','Technical inquiries and project collaborations:')"></span>
-                <a href="mailto:kontakt@co2-footprint.de" class="underline">kontakt@co2-footprint.de</a>
-                <span x-text="l(' Wir antworten in der Regel innerhalb von 24 Werktagen.',' We usually respond within 24 workdays.')"></span>
-            </p>
-            <p class="mb-4">
-                <span x-text="l('Besuchen Sie unser GitHub für Updates, Issues und Mitwirkung:','Visit our GitHub for updates, issues, and contributions:')"></span>
-                <a href="https://github.com/cantosun99/co2-footprint-project" class="underline">github.com/cantosun99/co2-footprint-project</a>
-            </p>
-            <p class="mb-4"
-               x-text="l(
-                     'Telefonische Erreichbarkeit: +49 (0) 123 456789, Mo–Fr 9–17 Uhr. Sollten Sie uns nicht erreichen, hinterlassen Sie bitte eine Nachricht – meistens geht eh keiner ran.',
-                     'Phone availability: +49 (0) 123 456789, Mon–Fri 9 AM–5 PM. If we miss your call, please leave a message – usually noone picks up anyway.'
-                   )"></p>
-        </section>
+    <!-- Main -->
+    <main class="content flex-1 overflow-y-auto px-4 py-4 h-auto md:h-[calc(100vh-8rem)]">
+        <div class="container mx-auto p-4 space-y-8">
 
-        <!-- Kontaktformular -->
-        <section id="formular">
-            <h1 class="text-3xl font-bold mb-6" x-text="l('Kontaktformular','Contact Form')"></h1>
-            <form class="space-y-4 max-w-xl" @submit.prevent="sanitizeForm($event)">
-                <div>
-                    <label for="name" class="block font-medium" x-text="l('Ihr Name','Your Name')"></label>
-                    <input type="text" id="name" name="name" required
-                           class="w-full mt-1 px-3 py-2 border rounded" />
-                </div>
-                <div>
-                    <label for="email" class="block font-medium" x-text="l('Ihre E-Mail','Your Email')"></label>
-                    <input type="email" id="email" name="email" required
-                           class="w-full mt-1 px-3 py-2 border rounded" />
-                </div>
-                <div>
-                    <label for="message" class="block font-medium" x-text="l('Ihre Nachricht','Your Message')"></label>
-                    <textarea id="message" name="message" rows="5" required
-                              class="w-full mt-1 px-3 py-2 border rounded"></textarea>
-                </div>
-                <button type="submit" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800" x-text="l('Absenden','Submit')"></button>
-            </form>
-        </section>
-    </div>
-</main>
+            <!-- About section -->
+            <section id="ueber">
+                <h1 class="text-3xl font-bold mb-6" x-text="l('Über uns','About us')">
+                    Über uns
+                </h1>
+                <p
+                        class="mb-4"
+                        x-html="l(
+                'Unsere Mission ist es, Transparenz in eines der drängendsten globalen Themen zu bringen: die Verteilung von CO₂-Emissionen großer Unternehmen. Auf unserer Plattform stellen wir die Top 100 Unternehmen mit den höchsten Emissionen neutral und faktenbasiert dar – ohne Bewertungen, Kommentare oder Handlungsempfehlungen.',
+                'Our mission is to bring transparency to one of the most critical global challenges: the distribution of corporate CO₂ emissions. On our platform, we neutrally and factually present the Top 100 companies with the highest emissions — without judgment, commentary, or recommendations.'
+              )"
+                ></p>
+                <p
+                        class="mb-4"
+                        x-html="l(
+                'Wir konzentrieren uns auf die unverfälschte Darstellung präziser und sorgfältig geprüfter Datensätze, ergänzt durch interaktive Filter- und Sortierfunktionen, die eine individuelle Analyse ermöglichen. Unser Anspruch ist es, komplexe Informationen klar, übersichtlich und ohne Einflussnahme zugänglich zu machen.',
+                'We focus solely on delivering precise, thoroughly verified datasets, enhanced by interactive filtering and sorting options that enable individual analysis. Our goal is to make complex information accessible, clear, and free from external influence.'
+              )"
+                ></p>
+                <p
+                        class="mb-4"
+                        x-html="l(
+                'Dabei nehmen wir auch unsere eigene Verantwortung ernst: Unsere Plattform ist bewusst ressourcenschonend gestaltet und verbraucht durch optimierte Technik und minimalistisches Design so wenig CO₂ wie möglich. Unser Sidebar-CO₂-Rechner macht unseren geringen ökologischen Fußabdruck jederzeit transparent sichtbar.',
+                'At the same time, we take our own responsibility seriously: our platform is intentionally designed to be resource-efficient, consuming as little CO₂ as possible through optimized technology and minimalist design. Our sidebar CO₂ calculator transparently displays our minimal environmental footprint at all times.'
+              )"
+                ></p>
+                <p
+                        class="mb-4"
+                        x-html="l(
+                'Wir glauben, dass objektive Information die Grundlage für eigenes Denken und verantwortungsbewusstes Handeln ist. Mit unserer Arbeit leisten wir einen Beitrag zu mehr Offenheit, zu faktenbasiertem Diskurs und zur Förderung von Eigenverantwortung in der Klimadebatte.',
+                'We believe that objective information forms the foundation for independent thinking and responsible action. Through our work, we contribute to greater openness, fact-based discourse, and the promotion of personal accountability in the climate conversation.'
+              )"
+                ></p>
+            </section>
 
-<!-- Sanitize Script -->
-<script>
-    function sanitizeForm(event) {
-        const fields = ['name', 'email', 'message'];
-        const blacklist = /[<>\{\}();:"'`]/g;
-        let safe = true;
-        fields.forEach(id => {
-            const el = event.target.querySelector('#' + id);
-            if (el && blacklist.test(el.value)) {
-                el.value = el.value.replace(blacklist, '');
-                safe = false;
-            }
-        });
-        if (safe) {
-            event.target.submit();
-            alert('Vielen Dank für Ihre Nachricht!');
-        } else {
-            alert('Unerlaubte Zeichen wurden entfernt. Bitte überprüfen Sie Ihre Eingabe.');
-        }
-    }
-</script>
+            <!-- Contact section -->
+            <section id="kontakt" class="mt-10">
+                <h2 class="text-3xl font-bold mb-6" x-text="l('Kontakt','Contact')">
+                    Kontakt
+                </h2>
+                <p class="mb-4">
+                    <span x-text="l('Technische Anfragen und Projektkooperationen:','Technical inquiries and project collaborations:')"></span>
+                    <a href="mailto:kontakt@co2-footprint.de" class="underline">
+                        kontakt@co2-footprint.de
+                    </a>
+                    <span x-text="l(' Wir antworten in der Regel innerhalb von 24 Werktagen.',' We usually respond within 24 workdays.')"></span>
+                </p>
+                <p class="mb-4">
+                    <span x-text="l('Besuchen Sie unser GitHub für Updates, Issues und Mitwirkung:','Visit our GitHub for updates, issues, and contributions:')"></span>
+                    <a href="https://github.com/cantosun99/co2-footprint-project" class="underline">
+                        github.com/cantosun99/co2-footprint-project
+                    </a>
+                </p>
+                <p
+                        class="mb-4"
+                        x-text="l(
+                'Telefonische Erreichbarkeit: +49 (0) 123 456789, Mo–Fr 9–17 Uhr. Sollten Sie uns nicht erreichen, hinterlassen Sie bitte eine Nachricht – meistens geht eh keiner ran.',
+                'Phone availability: +49 (0) 123 456789, Mon–Fri 9 AM–5 PM. If we miss your call, please leave a message – usually no one picks up anyway.'
+              )"
+                ></p>
+            </section>
+
+            <!-- Contact form section -->
+            <section id="formular">
+                <h2 class="text-3xl font-bold mb-6" x-text="l('Kontaktformular','Contact Form')">
+                    Kontaktformular
+                </h2>
+                <form
+                        action="/contact"
+                        method="post"
+                        class="space-y-4 max-w-xl"
+                        x-on:submit.prevent="sanitizeForm($event)"
+                >
+                    <div>
+                        <label for="name" class="block font-medium" x-text="l('Ihr Name','Your Name')"></label>
+                        <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                required
+                                class="w-full mt-1 px-3 py-2 border rounded"
+                        />
+                    </div>
+                    <div>
+                        <label for="email" class="block font-medium" x-text="l('Ihre E-Mail','Your Email')"></label>
+                        <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                required
+                                class="w-full mt-1 px-3 py-2 border rounded"
+                        />
+                    </div>
+                    <div>
+                        <label for="message" class="block font-medium" x-text="l('Ihre Nachricht','Your Message')"></label>
+                        <textarea
+                                id="message"
+                                name="message"
+                                rows="5"
+                                required
+                                class="w-full mt-1 px-3 py-2 border rounded"
+                        ></textarea>
+                    </div>
+                    <button
+                            type="submit"
+                            class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800"
+                            x-text="l('Absenden','Submit')"
+                    ></button>
+                </form>
+            </section>
+        </div>
+    </main>
+</div>
 
 <!-- Footer -->
 <footer class="fixed inset-x-0 bottom-0 bg-gray-200 text-xs text-center p-4 h-16">
-    <p x-text="l('© 2025 CO₂-Footprint Initiative – Alle Rechte vorbehalten.','© 2025 CO₂ Footprint Initiative – All rights reserved.')"></p>
+    <p x-text="l('© 2025 CO₂-Footprint Initiative – Alle Rechte vorbehalten.','© 2025 CO₂-Footprint Initiative – All rights reserved.')"></p>
     <p class="mt-2">
-        <a href="legal.html" class="underline font-bold" x-text="l('Impressum & Datenschutzerklärung','Imprint & Privacy')"></a>
+        <a
+                href="legal.html"
+                class="underline font-bold"
+                x-text="l('Impressum & Datenschutzerklärung','Imprint & Privacy')"
+        ></a>
     </p>
 </footer>
 
+<!-- Script -->
 <script src="app.js"></script>
 </body>
 </html>

@@ -1,26 +1,19 @@
-/* Desktop: Nur Header (4rem) berücksichtigen */
+/* Ensure adequate offset for fixed header (4rem) on all viewports */
 section {
-    scroll-margin-top: 4rem; /* Header-Höhe (h-16) */
+    scroll-margin-top: 4rem; /* Header height (h-16) */
 }
 
-/* Mobil (vertikal): Header + Sidebar (je 4rem) berücksichtigen */
-@media (max-width: 768px) {
-    section {
-        scroll-margin-top: 8rem; /* Header (4rem) + Sidebar (4rem) */
-    }
-}
-
-/* Sidebar bei RTL rechts anordnen */
+/* Sidebar ordering for RTL languages */
 [dir="rtl"] .sidebar {
     order: 2;
 }
 
-/* Inhalt bei RTL links anordnen */
+/* Content ordering for RTL languages */
 [dir="rtl"] .content {
     order: 1;
 }
 
-/* Weiche Animation beim Seitenleistenwechsel */
+/* Smooth transition when sidebar order changes */
 .sidebar {
     transition: order 0.3s ease;
 }
